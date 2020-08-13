@@ -63,6 +63,10 @@ public class Node {
         this.negative.parent = this;
     }
 
+    public Node getParent() {
+        return parent;
+    }
+
     public void notifyListeners(@Nullable Node node) {
         listener.onSelectingNode(node);
     }

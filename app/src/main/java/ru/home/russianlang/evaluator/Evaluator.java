@@ -20,6 +20,10 @@ public class Evaluator implements Node.Callbacks {
         return selected;
     }
 
+    public void setSelected(Node selected) {
+        this.selected = selected;
+    }
+
     @Override
     public void onSelectingNode(Node node) {
         selected = node;

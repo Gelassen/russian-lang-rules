@@ -15,9 +15,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
-//        val view = R.id.questionToVerify
-//        view.text = ""
         provider.startRule20()
 
         questionToVerify.text = provider.getCurrentData()!!.value
@@ -26,27 +23,35 @@ class MainActivity : AppCompatActivity() {
 
         positiveReply.setOnClickListener { view ->
             provider.onPositiveAnswer()
-
-            questionToVerify.text = provider.getCurrentData()!!.value
-
-            disableButtonsOnCase()
-            showException()
+            updateView()
         }
 
         negativeReply.setOnClickListener { view ->
             provider.onNegativeAnswer()
-
-            questionToVerify.text = provider.getCurrentData()!!.value
-
-            disableButtonsOnCase()
-            showException()
+            updateView()
         }
+    }
+
+    override fun onBackPressed() {
+        if (provider.onUpOnLevelHigher()) {
+            resetConditions()
+            updateView()
+        } else {
+            super.onBackPressed()
+        }
+    }
+
+    private fun updateView() {
+        questionToVerify.text = provider.getCurrentData()!!.value
+
+        disableButtonsOnCase()
+        showException()
     }
 
     private fun showException() {
         if (provider.getCurrentData()!!.exception != null) {
             exception.visibility = View.VISIBLE
-            exception.text = /*"Исключение: \n" + */provider.getCurrentData()!!.exception
+            exception.text = provider.getCurrentData()!!.exception
             exceptionTitle.visibility = View.VISIBLE
         } else {
             exceptionTitle.visibility = View.GONE

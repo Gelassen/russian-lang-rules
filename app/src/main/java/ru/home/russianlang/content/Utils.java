@@ -12,12 +12,14 @@ public class Utils {
         root.setValue("Слово женского рода с мягким знаком на конце (в начальной форме) ?");
         root.setPositive(new Node(tree, "И (тени)"));
         root.setNegative(new Node(tree, "на -ия, -ие, -ий  // на -мя, -дитя"));
-        root.setException("-ие сохраняется при ответе на вопрос кого?//что? (войти в здание)");
 
         Node nodeNegativeLevel1 = root.getNegative();
         nodeNegativeLevel1.setPositive(new Node(tree, "И (армии)"));
-        nodeNegativeLevel1.setException("(на острие))");
+        nodeNegativeLevel1.setException("-ие сохраняется при ответе на вопрос кого?//что? (войти в здание)");
         nodeNegativeLevel1.setNegative(new Node(tree, "Это слово типа страна // земля ?"));
+
+        Node nodePositiveLevel2 = nodeNegativeLevel1.getPositive();
+        nodePositiveLevel2.setException("(на острие))");
 
         Node nodeNegativeLevel2 = nodeNegativeLevel1.getNegative();
         nodeNegativeLevel2.setPositive(new Node(tree, "Пишем, как страна (о стране => о земле)"));

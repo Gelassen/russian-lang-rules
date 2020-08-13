@@ -12,8 +12,7 @@ class DataProvider {
     }
 
     fun startRule20() {
-        evaluator =
-            Utils.generateEvaluationTreeRule20()
+        evaluator = Utils.generateEvaluationTreeRule20()
     }
 
     fun onPositiveAnswer() {
@@ -26,6 +25,15 @@ class DataProvider {
         val selected = evaluator.selected
         selected.negative
         selected.notifyListeners(selected.negative)
+    }
+
+    fun onUpOnLevelHigher(): Boolean {
+        var succeed: Boolean = false
+        if (evaluator.selected.parent != null) {
+            evaluator.selected = evaluator.selected.parent
+            succeed = true
+        }
+        return succeed
     }
 
     init {
