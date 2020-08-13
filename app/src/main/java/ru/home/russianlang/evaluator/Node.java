@@ -8,6 +8,7 @@ public class Node {
     private String exception;
     private Node positive;
     private Node negative;
+    private Node parent;
 
     private Callbacks listener;
 
@@ -50,6 +51,7 @@ public class Node {
 
     public void setPositive(Node positive) {
         this.positive = positive;
+        this.positive.parent = this;
     }
 
     public Node getNegative() {
@@ -58,6 +60,7 @@ public class Node {
 
     public void setNegative(Node negative) {
         this.negative = negative;
+        this.negative.parent = this;
     }
 
     public void notifyListeners(@Nullable Node node) {
