@@ -49,9 +49,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showException() {
-        if (provider.getCurrentData()!!.exception != null) {
+        if (provider.getCurrentData()!!.exceptions.isNotEmpty()) {
             exception.visibility = View.VISIBLE
-            exception.text = provider.getCurrentData()!!.exception
+            exception.text = provider.getCurrentData()!!.exceptions.get(0)
             exceptionTitle.visibility = View.VISIBLE
         } else {
             exceptionTitle.visibility = View.GONE

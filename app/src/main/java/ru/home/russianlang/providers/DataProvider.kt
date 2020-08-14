@@ -12,7 +12,7 @@ class DataProvider {
     }
 
     fun startRule20() {
-        evaluator = Utils.generateEvaluationTreeRule20()
+        evaluator = Utils.generateEvaluationTreeRule20_1()
     }
 
     fun onPositiveAnswer() {
@@ -38,6 +38,6 @@ class DataProvider {
 
     init {
         evaluator =
-            Utils.generateEvaluationTreeRule20()
+            Utils.generateEvaluationTreeRule20_1()
     }
 }

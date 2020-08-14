@@ -2,10 +2,13 @@ package ru.home.russianlang.evaluator;
 
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Node {
     private String title;
     private String value;
-    private String exception;
+    private List<String> exceptions = new ArrayList<>();
     private Node positive;
     private Node negative;
     private Node parent;
@@ -37,12 +40,12 @@ public class Node {
         this.title = title;
     }
 
-    public String getException() {
-        return exception;
+    public List<String> getExceptions() {
+        return exceptions;
     }
 
-    public void setException(String exception) {
-        this.exception = exception;
+    public void setExceptions(String exception) {
+        this.exceptions.add(exception);
     }
 
     public Node getPositive() {
