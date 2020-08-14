@@ -30,6 +30,29 @@ public class Utils {
         return tree;
     }
 
+    public static Node generateRule20_1() {
+        Node root = new Node(null);
+        root.setTitle("Окончания E//И слов предметов (существительных)");
+        root.setValue("Слово женского рода с мягким знаком на конце (в начальной форме) ?");
+        root.setPositive(new Node(null, "И (тени)"));
+        root.setNegative(new Node(null, "на -ия, -ие, -ий  // на -мя, -дитя"));
+
+        Node nodeNegativeLevel1 = root.getNegative();
+        nodeNegativeLevel1.setPositive(new Node(null, "И (армии)"));
+        nodeNegativeLevel1.setExceptions("-ие сохраняется при ответе на вопрос кого?//что? (войти в здание)");
+        nodeNegativeLevel1.setNegative(new Node(null, "Это слово типа страна // земля ?"));
+
+        Node nodePositiveLevel2 = nodeNegativeLevel1.getPositive();
+        nodePositiveLevel2.setExceptions("(на острие))");
+
+        Node nodeNegativeLevel2 = nodeNegativeLevel1.getNegative();
+        nodeNegativeLevel2.setPositive(new Node(null, "Пишем, как страна (о стране => о земле)"));
+        nodeNegativeLevel2.setNegative(new Node(null, "Е (о товарище)"));
+        nodeNegativeLevel2.getNegative().setExceptions("в забытьи");
+
+        return root;
+    }
+
     public static Node generateRule20_2() {
         Node root = new Node(null);
 

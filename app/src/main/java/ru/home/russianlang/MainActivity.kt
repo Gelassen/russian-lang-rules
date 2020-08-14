@@ -1,13 +1,28 @@
 package ru.home.russianlang
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import ru.home.russianlang.evaluator.Node
 import ru.home.russianlang.providers.DataProvider
+import java.io.Serializable
 
 class MainActivity : AppCompatActivity() {
+
+    companion object {
+
+        val EXTRA_PAYLOAD = "PAYLOAD"
+
+        fun start(context: Context, payload: Serializable) {
+            val intent = Intent(context, MainActivity::class.java)
+            intent.putExtra(EXTRA_PAYLOAD, payload)
+            context.startActivity(intent)
+        }
+    }
 
     private val provider = DataProvider()
 
@@ -15,11 +30,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        provider.startRule20()
+        val node = intent.extras!!.get(EXTRA_PAYLOAD) as Node;
 
-        questionToVerify.text = provider.getCurrentData()!!.value
+        provider.setupData(node)
 
         findViewById<TextView>(R.id.title).text = provider.getCurrentData()!!.title
+
+        updateView()
 
         positiveReply.setOnClickListener { view ->
             provider.onPositiveAnswer()

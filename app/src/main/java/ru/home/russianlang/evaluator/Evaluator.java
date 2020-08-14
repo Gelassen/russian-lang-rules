@@ -1,7 +1,5 @@
 package ru.home.russianlang.evaluator;
 
-import ru.home.russianlang.evaluator.Node;
-
 public class Evaluator implements Node.Callbacks {
 
     private Node root;
@@ -13,6 +11,7 @@ public class Evaluator implements Node.Callbacks {
 
     public void setRoot(Node root) {
         this.root = root;
+        this.root.setListener(this);
         this.selected = root;
     }
 

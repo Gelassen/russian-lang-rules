@@ -1,14 +1,13 @@
 package ru.home.russianlang;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
-import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
-import android.widget.SimpleExpandableListAdapter;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -16,7 +15,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+
+import ru.home.russianlang.content.RulesGen;
+import ru.home.russianlang.evaluator.Node;
 
 public class RulesActivity extends AppCompatActivity {
 
@@ -29,29 +30,48 @@ public class RulesActivity extends AppCompatActivity {
         AppExpandableListAdapter adapter = new AppExpandableListAdapter(this);
         view.setAdapter(adapter);
 
-        List<Rule> dataset = new ArrayList<>();
-
-        Rule rule = new Rule();
-        rule.getSubrules().add(new Rule());
-        dataset.add(rule);
+        List<Rule> dataset = RulesGen.generateRules();
 
         adapter.setData(dataset);
     }
 
-    public static class Rule {
+    public static class Rule<T extends Node> {
 
+        private T payload;
         private String name = "test-test";
-
         private List<Rule> subrules = new ArrayList<>();
+
+        public Rule() {}
+
+        public Rule(String name) {
+            this.name = name;
+        }
+
+        public Rule(T payload) {
+            this.payload = payload;
+            this.name = payload.getTitle();
+        }
+
+        public Rule(String name, T payload) {
+            this.payload = payload;
+            this.name = name;
+        }
 
         public String getName() {
             return name;
+        }
+
+        public T getPayload() {
+            return payload;
         }
 
         public List<Rule> getSubrules() {
             return subrules;
         }
 
+        public void addSubRule(Rule rule) {
+            subrules.add(rule);
+        }
     }
 
     public static class AppExpandableListAdapter extends BaseExpandableListAdapter {
@@ -116,13 +136,22 @@ public class RulesActivity extends AppCompatActivity {
         }
 
         @Override
-        public View getChildView(int pos, int childPos, boolean isExpanded, View convertView, ViewGroup viewGroup) {
+        public View getChildView(int pos, int childPos, boolean isExpanded, View convertView, final ViewGroup viewGroup) {
             // TODO move to view holder pattern
             if (convertView == null) {
                 convertView = inflater.inflate(R.layout.view_group_item, viewGroup, false);
             }
 
-            ((TextView) convertView.findViewById(R.id.text)).setText(data.get(pos).getSubrules().get(childPos).getName());
+            final Rule model = (Rule) data.get(pos).getSubrules().get(childPos);
+            ((TextView) convertView.findViewById(R.id.text)).setText(model.getName());
+
+            convertView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    MainActivity.Companion.start(viewGroup.getContext(), model.getPayload());
+                }
+            });
+
             return convertView;
         }
 

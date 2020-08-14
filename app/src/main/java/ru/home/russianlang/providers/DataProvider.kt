@@ -5,14 +5,15 @@ import ru.home.russianlang.evaluator.Node
 import ru.home.russianlang.content.Utils
 
 class DataProvider {
-    private var evaluator: Evaluator
+    private lateinit var evaluator: Evaluator
+
+    fun setupData(node: Node) {
+        this.evaluator = Evaluator()
+        this.evaluator.root = node
+    }
 
     fun getCurrentData(): Node? {
         return evaluator.selected
-    }
-
-    fun startRule20() {
-        evaluator = Utils.generateEvaluationTreeRule20_1()
     }
 
     fun onPositiveAnswer() {
@@ -36,8 +37,4 @@ class DataProvider {
         return succeed
     }
 
-    init {
-        evaluator =
-            Utils.generateEvaluationTreeRule20_1()
-    }
 }

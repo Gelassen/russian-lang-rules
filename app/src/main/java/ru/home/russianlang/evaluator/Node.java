@@ -2,10 +2,11 @@ package ru.home.russianlang.evaluator;
 
 import org.jetbrains.annotations.Nullable;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Node {
+public class Node implements Serializable {
     private String title;
     private String value;
     private List<String> exceptions = new ArrayList<>();
@@ -22,6 +23,16 @@ public class Node {
     public Node(Callbacks listener, String value) {
         this.value = value;
         this.listener = listener;
+    }
+
+    public void setListener(Callbacks listener) {
+        this.listener = listener;
+        if (positive != null) {
+            positive.setListener(listener);
+        }
+        if (negative != null) {
+            negative.setListener(listener);
+        }
     }
 
     public String getValue() {
