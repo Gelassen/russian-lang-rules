@@ -18,6 +18,7 @@ import java.util.List;
 
 import ru.home.russianlang.content.RulesGen;
 import ru.home.russianlang.evaluator.Node;
+import ru.home.russianlang.model.Rule;
 
 public class RulesActivity extends AppCompatActivity {
 
@@ -30,7 +31,9 @@ public class RulesActivity extends AppCompatActivity {
         AppExpandableListAdapter adapter = new AppExpandableListAdapter(this);
         view.setAdapter(adapter);
 
-        List<Rule> dataset = RulesGen.generateRules();
+        List<Rule<?>> dataset = new RulesGen().generateRules();
+
+        List<ru.home.russianlang.model.Rule> rules = new RulesGen().readRules(this);
 
         adapter.setData(dataset);
     }
@@ -77,9 +80,9 @@ public class RulesActivity extends AppCompatActivity {
     public static class AppExpandableListAdapter extends BaseExpandableListAdapter {
 
         private LayoutInflater inflater;
-        private List<Rule> data = new ArrayList<>();
+        private List<Rule<?>> data = new ArrayList<>();
 
-        public void setData(List<Rule> data) {
+        public void setData(List<Rule<?>> data) {
             this.data.clear();
             this.data = data;
             notifyDataSetChanged();

@@ -1,0 +1,48 @@
+{
+  "GroupOfRules":[
+    {
+      "title":"Правописание глаголов и отглагольных слов",
+      "rules":[
+        {
+          "title":"ИТЕ//ЕТЕ на конце глаголов",
+          "rule":{
+            "title":"Повелительная форма?",
+            "exceptions":[
+
+            ],
+            "positive":{
+              "title":"ИТЕ (почистите)",
+              "exceptions":[
+
+              ],
+              "positive":null,
+              "negative":null
+            },
+            "negative":{
+              "title":"из 11 исключений // на ИТЬ?",
+              "exceptions":[
+
+              ],
+              "positive":{
+                "title":"ИТЕ (строите)",
+                "exceptions":[
+
+                ],
+                "positive":null,
+                "negative":null
+              },
+              "negative":{
+                "title":"ЕТЕ (пишете)",
+                "exceptions":[
+
+                ],
+                "positive":null,
+                "negative":null
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
