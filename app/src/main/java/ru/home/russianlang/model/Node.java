@@ -12,7 +12,6 @@ public class Node implements Serializable, IViewNode {
     private Node positive;
     private Node negative;
 
-    // TODO verify consistency
     private IViewNode.Callbacks listener;
     private IViewNode parent;
 
@@ -65,10 +64,6 @@ public class Node implements Serializable, IViewNode {
         this.positive.parent = this;
     }
 
-//    public void setPositive(Node positive) {
-//        this.positive = positive;
-//    }
-
     public Node getNegative() {
         return negative;
     }
@@ -97,7 +92,4 @@ public class Node implements Serializable, IViewNode {
         listener.onSelectingNode(nodeSelected);
     }
 
-//    public void setNegative(Node negative) {
-//        this.negative = negative;
-//    }
 }

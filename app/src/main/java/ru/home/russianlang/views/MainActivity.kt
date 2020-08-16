@@ -8,7 +8,6 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import ru.home.russianlang.R
-import ru.home.russianlang.model.Node
 import ru.home.russianlang.model.Rule
 import ru.home.russianlang.providers.DataProvider
 import java.io.Serializable
@@ -36,7 +35,7 @@ class MainActivity : AppCompatActivity() {
 
         provider.setupData(rule.root)
 
-        findViewById<TextView>(R.id.title).text = rule.title/*provider.getCurrentData()!!.title*/
+        findViewById<TextView>(R.id.title).text = rule.title
 
         updateView()
 
