@@ -1,4 +1,4 @@
-package ru.home.russianlang
+package ru.home.russianlang.views
 
 import android.content.Context
 import android.content.Intent
@@ -7,7 +7,9 @@ import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
-import ru.home.russianlang.evaluator.Node
+import ru.home.russianlang.R
+import ru.home.russianlang.model.Node
+import ru.home.russianlang.model.Rule
 import ru.home.russianlang.providers.DataProvider
 import java.io.Serializable
 
@@ -30,9 +32,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val node = intent.extras!!.get(EXTRA_PAYLOAD) as Node;
-
-        provider.setupData(node)
+        val node = intent.extras!!.get(EXTRA_PAYLOAD) as Rule;
+// TODO Node vs evaluator/Node
+//        provider.setupData(node)
 
         findViewById<TextView>(R.id.title).text = provider.getCurrentData()!!.title
 

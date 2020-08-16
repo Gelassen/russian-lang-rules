@@ -1,8 +1,7 @@
 package ru.home.russianlang.providers
 
-import ru.home.russianlang.evaluator.Evaluator
-import ru.home.russianlang.evaluator.Node
-import ru.home.russianlang.content.Utils
+import ru.home.russianlang.providers.evaluator.Evaluator
+import ru.home.russianlang.providers.evaluator.Node
 
 class DataProvider {
     private lateinit var evaluator: Evaluator

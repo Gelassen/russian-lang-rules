@@ -1,4 +1,4 @@
-package ru.home.russianlang.evaluator;
+package ru.home.russianlang.providers.evaluator;
 
 public class Evaluator implements Node.Callbacks {
 

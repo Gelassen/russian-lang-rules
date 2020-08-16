@@ -1,7 +1,7 @@
 package ru.home.russianlang.content;
 
-import ru.home.russianlang.evaluator.Evaluator;
-import ru.home.russianlang.evaluator.Node;
+import ru.home.russianlang.providers.evaluator.Evaluator;
+import ru.home.russianlang.providers.evaluator.Node;
 
 public class Utils {
 

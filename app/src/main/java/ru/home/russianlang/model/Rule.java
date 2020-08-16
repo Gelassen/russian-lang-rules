@@ -2,7 +2,9 @@ package ru.home.russianlang.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Rule {
+import java.io.Serializable;
+
+public class Rule implements Serializable {
     private String title;
     @SerializedName("rule")
     private Node root;

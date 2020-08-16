@@ -1,7 +1,6 @@
-package ru.home.russianlang;
+package ru.home.russianlang.views;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,9 +15,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 import java.util.List;
 
+import ru.home.russianlang.R;
 import ru.home.russianlang.content.RulesGen;
-import ru.home.russianlang.evaluator.Node;
 import ru.home.russianlang.model.Rule;
+import ru.home.russianlang.model.Rules;
 
 public class RulesActivity extends AppCompatActivity {
 
@@ -31,58 +31,18 @@ public class RulesActivity extends AppCompatActivity {
         AppExpandableListAdapter adapter = new AppExpandableListAdapter(this);
         view.setAdapter(adapter);
 
-        List<Rule<?>> dataset = new RulesGen().generateRules();
 
-        List<ru.home.russianlang.model.Rule> rules = new RulesGen().readRules(this);
+        List<Rules> rules = new RulesGen().readRules(this);
 
-        adapter.setData(dataset);
-    }
-
-    public static class Rule<T extends Node> {
-
-        private T payload;
-        private String name = "test-test";
-        private List<Rule> subrules = new ArrayList<>();
-
-        public Rule() {}
-
-        public Rule(String name) {
-            this.name = name;
-        }
-
-        public Rule(T payload) {
-            this.payload = payload;
-            this.name = payload.getTitle();
-        }
-
-        public Rule(String name, T payload) {
-            this.payload = payload;
-            this.name = name;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public T getPayload() {
-            return payload;
-        }
-
-        public List<Rule> getSubrules() {
-            return subrules;
-        }
-
-        public void addSubRule(Rule rule) {
-            subrules.add(rule);
-        }
+        adapter.setData(rules);
     }
 
     public static class AppExpandableListAdapter extends BaseExpandableListAdapter {
 
         private LayoutInflater inflater;
-        private List<Rule<?>> data = new ArrayList<>();
+        private List<Rules> data = new ArrayList<>();
 
-        public void setData(List<Rule<?>> data) {
+        public void setData(List<Rules> data) {
             this.data.clear();
             this.data = data;
             notifyDataSetChanged();
@@ -99,7 +59,7 @@ public class RulesActivity extends AppCompatActivity {
 
         @Override
         public int getChildrenCount(int groupPosition) {
-            return data.get(groupPosition).getSubrules().size();
+            return data.get(groupPosition).getRules().size();
         }
 
         @Override
@@ -109,7 +69,7 @@ public class RulesActivity extends AppCompatActivity {
 
         @Override
         public Object getChild(int groupPos, int childPos) {
-            return data.get(groupPos).getSubrules().get(childPos);
+            return data.get(groupPos).getRules().get(childPos);
         }
 
         @Override
@@ -134,7 +94,7 @@ public class RulesActivity extends AppCompatActivity {
                 convertView = inflater.inflate(R.layout.view_group, viewGroup, false);
             }
 
-            ((TextView) convertView.findViewById(R.id.text)).setText(data.get(pos).getName());
+            ((TextView) convertView.findViewById(R.id.text)).setText(data.get(pos).getTitle());
             return convertView;
         }
 
@@ -145,13 +105,13 @@ public class RulesActivity extends AppCompatActivity {
                 convertView = inflater.inflate(R.layout.view_group_item, viewGroup, false);
             }
 
-            final Rule model = (Rule) data.get(pos).getSubrules().get(childPos);
-            ((TextView) convertView.findViewById(R.id.text)).setText(model.getName());
+            final Rule model = (Rule) data.get(pos).getRules().get(childPos);
+            ((TextView) convertView.findViewById(R.id.text)).setText(model.getTitle());
 
             convertView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    MainActivity.Companion.start(viewGroup.getContext(), model.getPayload());
+                    MainActivity.Companion.start(viewGroup.getContext(), model);
                 }
             });
 
