@@ -41,7 +41,7 @@
                 android:layout_marginBottom="2dp"
                 android:textSize="12sp"
                 android:visibility="gone"
-                android:textColor="@android:color/holo_blue_dark"
+                android:textColor="@color/colorPrimary"
                 android:text="Исключение:"
                 tools:visibility="visible"
                 />
@@ -59,7 +59,7 @@
                 android:layout_marginBottom="8dp"
                 android:gravity="center"
                 android:textSize="12sp"
-                android:textColor="@android:color/holo_blue_dark"
+                android:textColor="@color/colorPrimary"
                 android:visibility="gone"
                 tools:text="Исключение из этого правила"
                 tools:visibility="visible"
