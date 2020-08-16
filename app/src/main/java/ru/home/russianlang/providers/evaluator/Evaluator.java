@@ -1,30 +1,32 @@
 package ru.home.russianlang.providers.evaluator;
 
-public class Evaluator implements Node.Callbacks {
+import ru.home.russianlang.model.IViewNode;
 
-    private Node root;
-    private Node selected = null;
+public class Evaluator implements IViewNode.Callbacks {
 
-    public Node getRoot() {
+    private IViewNode root;
+    private IViewNode selected = null;
+
+    public IViewNode getRoot() {
         return root;
     }
 
-    public void setRoot(Node root) {
+    public void setRoot(IViewNode root) {
         this.root = root;
         this.root.setListener(this);
         this.selected = root;
     }
 
-    public Node getSelected() {
+    public IViewNode getSelected() {
         return selected;
     }
 
-    public void setSelected(Node selected) {
+    public void setSelected(IViewNode selected) {
         this.selected = selected;
     }
 
     @Override
-    public void onSelectingNode(Node node) {
+    public void onSelectingNode(IViewNode node) {
         selected = node;
     }
 }

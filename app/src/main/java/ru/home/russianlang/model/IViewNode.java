@@ -4,11 +4,9 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-import ru.home.russianlang.providers.evaluator.Node;
-
 public interface IViewNode {
 
-    void setListener(ru.home.russianlang.providers.evaluator.Node.Callbacks listener);
+    void setListener(Callbacks listener);
 
     String getValue();
 
@@ -20,7 +18,7 @@ public interface IViewNode {
 
     List<String> getExceptions();
 
-    void setExceptions(String exception);
+    void addException(String exception);
 
     Node getPositive();
 
@@ -30,9 +28,16 @@ public interface IViewNode {
 
     void setNegative(Node negative);
 
-    void setParent();
+    void setParent(IViewNode parent);
 
-    Node getParent();
+    IViewNode getParent();
 
-    void notifyListeners(@Nullable Node node);
+    /**
+     * On new selected callback
+     * */
+    void notifyListeners(@Nullable IViewNode nodeParent, Node nodeSelected);
+
+    interface Callbacks {
+        void onSelectingNode(IViewNode node);
+    }
 }

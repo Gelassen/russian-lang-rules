@@ -32,11 +32,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val node = intent.extras!!.get(EXTRA_PAYLOAD) as Rule;
-// TODO Node vs evaluator/Node
-//        provider.setupData(node)
+        val rule = intent.extras!!.get(EXTRA_PAYLOAD) as Rule;
 
-        findViewById<TextView>(R.id.title).text = provider.getCurrentData()!!.title
+        provider.setupData(rule.root)
+
+        findViewById<TextView>(R.id.title).text = rule.title/*provider.getCurrentData()!!.title*/
 
         updateView()
 
