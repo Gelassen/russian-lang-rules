@@ -1,13 +1,41 @@
 {
-  "title": "",
+  "title": "Ы//И после приставки",
   "rules":  [
     {
-      "title": "",
+      "title": "Ы//И после приставки",
       "rule": {
-        "title": "",
+        "title": "приставка ли это?",
         "exceptions": [],
-        "positive": null,
-        "negative": null
+        "positive": {
+          "title": "Русская?",
+          "exceptions": [],
+          "positive": {
+            "title": "На согласную?",
+            "exceptions": [],
+            "positive": {
+              "title": "Ы (подыграть)",
+              "exceptions": ["1. Приставки меж и сверх (межинститутский, сверхинтересный)\n2. взимать"]
+            },
+            "negative": {
+              "title": "И (поиграть)",
+              "exceptions": [],
+              "positive": null,
+              "negative": null
+            }
+          },
+          "negative": {
+            "title": "И (контригра)",
+            "exceptions": [],
+            "positive": null,
+            "negative": null
+          }
+        },
+        "negative": {
+          "title": "И (пединститут)",
+          "exceptions": [],
+          "positive": null,
+          "negative": null
+        }
       }
     }
   ]
