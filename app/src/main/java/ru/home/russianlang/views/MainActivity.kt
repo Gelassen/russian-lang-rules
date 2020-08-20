@@ -97,8 +97,6 @@ class MainActivity : AppCompatActivity() {
     private fun resetConditions() {
         negativeReply.isEnabled = true
         positiveReply.isEnabled = true
-        exceptionTitle.visibility = View.GONE
-        exception.visibility = View.GONE
         provider.exceptionsIsShown(false)
     }
 }

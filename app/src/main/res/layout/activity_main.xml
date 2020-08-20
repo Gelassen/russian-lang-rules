@@ -33,38 +33,6 @@
                 tools:text="Е//И слов предметом (сущ.)"
                 />
 
-            <TextView
-                android:id="@+id/exceptionTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="2dp"
-                android:textSize="12sp"
-                android:visibility="gone"
-                android:textColor="@color/colorPrimary"
-                android:text="Исключение:"
-                tools:visibility="visible"
-                />
-
-            <TextView
-                android:id="@+id/exception"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:padding="0dp"
-                android:layout_marginLeft="56dp"
-                android:layout_marginStart="56dp"
-                android:layout_marginRight="56dp"
-                android:layout_marginEnd="56dp"
-                android:layout_marginBottom="8dp"
-                android:gravity="center"
-                android:textSize="12sp"
-                android:textColor="@color/colorPrimary"
-                android:visibility="gone"
-                tools:text="Исключение из этого правила"
-                tools:visibility="visible"
-                />
-
         </LinearLayout>
 
         <com.bskim.maxheightscrollview.widgets.MaxHeightScrollView
@@ -96,8 +64,8 @@
 
         <TextView
             android:id="@+id/exceptionIndicator"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
             android:layout_above="@id/questionToVerifyContainer"
             android:layout_alignEnd="@id/questionToVerifyContainer"
             android:layout_marginBottom="-8dp"
