@@ -38,21 +38,31 @@ class MainActivity : AppCompatActivity() {
 
         findViewById<TextView>(R.id.title).text = rule.title
 
+        findViewById<TextView>(R.id.exceptionIndicator).setOnClickListener { view ->
+            provider.exceptionsIsShown(true)
+            updateView()
+        }
+
         updateView()
 
         positiveReply.setOnClickListener { view ->
             provider.onPositiveAnswer()
+            resetConditions()
             updateView()
         }
 
         negativeReply.setOnClickListener { view ->
             provider.onNegativeAnswer()
+            resetConditions()
             updateView()
         }
     }
 
     override fun onBackPressed() {
-        if (provider.onUpOnLevelHigher()) {
+        if (provider.isExceptionsShown()) {
+            provider.exceptionsIsShown(false)
+            updateView()
+        } else if (provider.onUpOnLevelHigher()) {
             resetConditions()
             updateView()
         } else {
@@ -61,47 +71,27 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun updateView() {
-        questionToVerify.text = provider.getCurrentData()!!.value
-
+        if (provider.isExceptionsShown()) {
+            val exceptionValue = provider.prepareExceptions(provider.getCurrentData()!!.exceptions)
+            questionToVerify.text = exceptionValue
+        } else {
+            questionToVerify.text = provider.getCurrentData()!!.value
+        }
         disableButtonsOnCase()
         showException()
     }
 
     private fun showException() {
-        if (provider.getCurrentData()!!.exceptions.isNotEmpty()) {
-            exception.visibility = View.VISIBLE
-
-            val exceptionValue = provider.prepareExceptions(provider.getCurrentData()!!.exceptions)
-
-            exception.text = exceptionValue//.toString().provider.getCurrentData()!!.exceptions.get(0)
-            exceptionTitle.visibility = View.VISIBLE
+        if (provider.getCurrentData()!!.exceptions.isNotEmpty() && !provider.isExceptionsShown()) {
+            exceptionIndicator.visibility = View.VISIBLE
         } else {
-            exceptionTitle.visibility = View.GONE
-            exception.visibility = View.GONE
+            exceptionIndicator.visibility = View.GONE
         }
     }
 
     private fun disableButtonsOnCase() {
-        if (provider.getCurrentData()!!.positive == null) {
-            positiveReply.isEnabled = false
-        } else {
-            positiveReply.isEnabled = true
-        }
-
-        if (provider.getCurrentData()!!.negative == null) {
-            negativeReply.isEnabled = false
-        } else {
-            negativeReply.isEnabled = true
-        }
-
-/*        if (provider.getCurrentData()!!.positive == null
-            && provider.getCurrentData()!!.negative == null) {
-            negativeReply.isEnabled = false
-            positiveReply.isEnabled = false
-        } else {
-            negativeReply.isEnabled = false
-            positiveReply.isEnabled = false
-        }*/
+        positiveReply.isEnabled = provider.getCurrentData()!!.positive != null
+        negativeReply.isEnabled = provider.getCurrentData()!!.negative != null
     }
 
     private fun resetConditions() {
@@ -109,5 +99,6 @@ class MainActivity : AppCompatActivity() {
         positiveReply.isEnabled = true
         exceptionTitle.visibility = View.GONE
         exception.visibility = View.GONE
+        provider.exceptionsIsShown(false)
     }
 }

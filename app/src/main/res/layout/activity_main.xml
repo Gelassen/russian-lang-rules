@@ -77,18 +77,32 @@
             android:layout_marginStart="56dp"
             android:layout_marginRight="56dp"
             android:layout_marginEnd="56dp"
-            android:layout_marginBottom="84dp"
-            android:background="@drawable/bg_exception"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/bg_content"
             android:gravity="center_horizontal"
             android:layout_centerInParent="true"
+            />
+
+        <TextView
+            android:id="@+id/exceptionIndicator"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_above="@id/questionToVerify"
+            android:layout_alignEnd="@id/questionToVerify"
+            android:layout_marginBottom="-8dp"
+            android:layout_marginEnd="8dp"
+            android:gravity="center"
+            android:text="!"
+            android:textColor="@android:color/white"
+            android:background="@drawable/bg_exception"
             />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/questionToVerify"
             android:orientation="horizontal"
-            android:layout_marginBottom="192dp"
+            android:layout_marginBottom="24dp"
+            android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true">
 
             <Button

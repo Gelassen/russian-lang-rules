@@ -7,6 +7,8 @@ import java.lang.StringBuilder
 class DataProvider {
     private lateinit var evaluator: Evaluator
 
+    private var isExceptionShown: Boolean = false
+
     fun setupData(node: IViewNode) {
         this.evaluator = Evaluator()
         this.evaluator.root = node
@@ -45,6 +47,14 @@ class DataProvider {
         }
 
         return strBuilder.removeSuffix("\n").toString()
+    }
+
+    fun exceptionsIsShown(value: Boolean) {
+        isExceptionShown = value
+    }
+
+    fun isExceptionsShown(): Boolean {
+        return isExceptionShown
     }
 
 }
