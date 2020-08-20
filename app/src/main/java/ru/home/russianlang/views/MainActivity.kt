@@ -11,6 +11,7 @@ import ru.home.russianlang.R
 import ru.home.russianlang.model.Rule
 import ru.home.russianlang.providers.DataProvider
 import java.io.Serializable
+import java.lang.StringBuilder
 
 class MainActivity : AppCompatActivity() {
 
@@ -69,7 +70,10 @@ class MainActivity : AppCompatActivity() {
     private fun showException() {
         if (provider.getCurrentData()!!.exceptions.isNotEmpty()) {
             exception.visibility = View.VISIBLE
-            exception.text = provider.getCurrentData()!!.exceptions.get(0)
+
+            val exceptionValue = provider.prepareExceptions(provider.getCurrentData()!!.exceptions)
+
+            exception.text = exceptionValue//.toString().provider.getCurrentData()!!.exceptions.get(0)
             exceptionTitle.visibility = View.VISIBLE
         } else {
             exceptionTitle.visibility = View.GONE
@@ -78,11 +82,26 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun disableButtonsOnCase() {
-        if (provider.getCurrentData()!!.positive == null
+        if (provider.getCurrentData()!!.positive == null) {
+            positiveReply.isEnabled = false
+        } else {
+            positiveReply.isEnabled = true
+        }
+
+        if (provider.getCurrentData()!!.negative == null) {
+            negativeReply.isEnabled = false
+        } else {
+            negativeReply.isEnabled = true
+        }
+
+/*        if (provider.getCurrentData()!!.positive == null
             && provider.getCurrentData()!!.negative == null) {
             negativeReply.isEnabled = false
             positiveReply.isEnabled = false
-        }
+        } else {
+            negativeReply.isEnabled = false
+            positiveReply.isEnabled = false
+        }*/
     }
 
     private fun resetConditions() {

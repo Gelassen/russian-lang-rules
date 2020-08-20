@@ -2,6 +2,7 @@ package ru.home.russianlang.providers
 
 import ru.home.russianlang.model.IViewNode
 import ru.home.russianlang.providers.evaluator.Evaluator
+import java.lang.StringBuilder
 
 class DataProvider {
     private lateinit var evaluator: Evaluator
@@ -34,6 +35,16 @@ class DataProvider {
             succeed = true
         }
         return succeed
+    }
+
+    fun prepareExceptions(exceptions: Collection<String>): String {
+        val strBuilder = StringBuilder()
+        for (ex in exceptions) {
+            strBuilder.append(ex)
+            strBuilder.append("\n")
+        }
+
+        return strBuilder.removeSuffix("\n").toString()
     }
 
 }

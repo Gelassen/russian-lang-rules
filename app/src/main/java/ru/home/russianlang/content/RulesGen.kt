@@ -21,7 +21,7 @@ class RulesGen {
             val assetAsString = assetToString(context, filePath)
             val rules: Rules = gson.fromJson(assetAsString, groupOfRulesType)
             result.add(rules)
-            Log.d("TAG", "Rules are parsed: " + rules.toString())
+            Log.d("TAG", "Rules are parsed: " + filePath)
         }
 
         return result
