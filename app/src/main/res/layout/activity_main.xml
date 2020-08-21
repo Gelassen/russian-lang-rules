@@ -33,6 +33,18 @@
                 tools:text="Е//И слов предметом (сущ.)"
                 />
 
+            <TextView
+                android:id="@+id/exceptionHint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:maxWidth="192dp"
+                android:textSize="12sp"
+                android:textColor="#D3D3D3"
+                android:text="Нажмите на красный кружок, чтобы увидеть исключения"
+                />
+
         </LinearLayout>
 
         <com.bskim.maxheightscrollview.widgets.MaxHeightScrollView
@@ -54,10 +66,10 @@
                 android:layout_height="wrap_content"
                 android:text="Hello World!"
                 android:padding="16dp"
-
                 android:background="@drawable/bg_content"
                 android:gravity="center_horizontal"
                 android:layout_gravity="center_horizontal"
+                tools:text="Слитно: \n1. 1я часть имеет пространственное//временное//количественное значение, а 2я 'град' (Новосибирск)\n 2. города на Северо.. (Североморск, но Северо-Курильск, Северо-Енисейск);\n Раздельно: 1е слово в географиическом названии это прилагательное//числительное (Верхняя Хава, Семь Братьев)\nСлужебные слова внутри географических названий с маленькой буквы (Комсомольск-на-Амуре)"
                 />
 
         </com.bskim.maxheightscrollview.widgets.MaxHeightScrollView>
