@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">RussianLang</string>
+
+    <string name="menu_privacy_policy">Privacy Policy</string>
+    <string name="menu_credits">Credits</string>
+
+    <string name="privacyPolicy" translatable="false">https://gelassen.github.io/blog/2020/08/25/google-play-privacy-policy.html</string>
+    <string name="credits" translatable="false">https://github.com/Gelassen/russian-lang-rules</string>
 </resources>

@@ -11,7 +11,6 @@ import ru.home.russianlang.R
 import ru.home.russianlang.model.Rule
 import ru.home.russianlang.providers.DataProvider
 import java.io.Serializable
-import java.lang.StringBuilder
 
 class MainActivity : AppCompatActivity() {
 

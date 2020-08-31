@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Русский Язык</string>
+    <string name="menu_privacy_policy">Политика конфиденциальности</string>
+    <string name="menu_credits">Благодраность</string>
 </resources>
