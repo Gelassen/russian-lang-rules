@@ -92,4 +92,15 @@ public class Node implements Serializable, IViewNode {
         listener.onSelectingNode(nodeSelected);
     }
 
+    @Override
+    public List<IViewNode> getAncestors() {
+        List<IViewNode> result = new ArrayList<>();
+        IViewNode tempParent = parent;
+        while (tempParent != null) {
+            result.add(tempParent);
+            tempParent = tempParent.getParent();
+        }
+        return result;
+    }
+
 }

@@ -37,6 +37,8 @@ public interface IViewNode {
      * */
     void notifyListeners(@Nullable IViewNode nodeParent, Node nodeSelected);
 
+    List<IViewNode> getAncestors();
+
     interface Callbacks {
         void onSelectingNode(IViewNode node);
     }

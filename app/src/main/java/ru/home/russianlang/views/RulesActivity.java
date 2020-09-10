@@ -140,7 +140,7 @@ public class RulesActivity extends AppCompatActivity {
             convertView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    MainActivity.Companion.start(viewGroup.getContext(), model);
+                    DecisionsActivity.Companion.start(viewGroup.getContext(), model);
                 }
             });
 
