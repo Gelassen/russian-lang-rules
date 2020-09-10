@@ -39,7 +39,7 @@ class DecisionsActivity : AppCompatActivity() {
 
         val rule = intent.extras!!.get(EXTRA_PAYLOAD) as Rule;
 
-        provider = DataProvider(resources)
+        provider = DataProvider(this)
         provider.setupData(rule.root)
 
         findViewById<TextView>(R.id.title).text = rule.title

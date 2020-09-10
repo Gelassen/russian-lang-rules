@@ -1,8 +1,10 @@
 package ru.home.russianlang.providers
 
+import android.content.Context
 import android.content.res.Resources
 import android.text.SpannableString
 import android.text.SpannableStringBuilder
+import androidx.core.content.ContextCompat
 import androidx.core.text.bold
 import androidx.core.text.color
 import ru.home.russianlang.R
@@ -18,11 +20,10 @@ class DataProvider {
 
     private var isExceptionShown: Boolean = false
 
-    constructor(res: Resources) {
-        positiveColor = res.getColor(R.color.colorNegativeDecision)
-        negativeColor = res.getColor(R.color.colorPositiveDecision)
+    constructor(context: Context) {
+        positiveColor = ContextCompat.getColor(context, R.color.colorPositiveDecision)
+        negativeColor = ContextCompat.getColor(context, R.color.colorNegativeDecision)
     }
-
 
     fun setupData(node: IViewNode) {
         this.evaluator = Evaluator()
@@ -54,7 +55,8 @@ class DataProvider {
         val builder = SpannableStringBuilder()
         val list = prepareListOfDecisions()
         if (list.isNotEmpty()) {
-            builder.bold { append(list) }
+//            builder.bold { append(list) }
+            builder.append(list)
             builder.append("\n")
         }
         builder.append(evaluator.selected.value)
@@ -72,23 +74,23 @@ class DataProvider {
     }
 
     fun onUpOnLevelHigher(): Boolean {
-        var succeed: Boolean = false
-        if (evaluator.selected.parent != null) {
-            evaluator.selected = evaluator.selected.parent
-            succeed = true
-        }
-        return succeed
+        return evaluator.onUpOnLevelHigher()
     }
 
-    fun prepareListOfDecisions(): String {
-        if (evaluator.selected.parent == null) return ""
+    fun prepareListOfDecisions(): CharSequence {
+        if (evaluator.answers.isEmpty()) return ""
 
-        val strBuilder = StringBuilder()
-        for (node in evaluator.selected.ancestors.asReversed()) {
-            strBuilder.append(node.title)
+        val strBuilder = SpannableStringBuilder()
+        for (node in evaluator.answers) {
+            strBuilder.color(
+                if (node.second == Evaluator.Answers.ANSWER_POSITIVE) positiveColor else negativeColor,
+                { bold { append(node.first.title) }}
+            )
+//            strBuilder.color(positiveColor, { bold { append("") }})
+//            strBuilder.bold { append(node.first.title) }
             strBuilder.append("\n")
         }
-        return strBuilder.toString()
+        return strBuilder
     }
 
     fun prepareExceptions(exceptions: Collection<String>): String {

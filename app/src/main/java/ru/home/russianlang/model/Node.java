@@ -5,6 +5,7 @@ import org.jetbrains.annotations.Nullable;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Node implements Serializable, IViewNode {
     private String title;
@@ -89,7 +90,7 @@ public class Node implements Serializable, IViewNode {
         if (listener == null) throw new IllegalStateException("Did you forget to add listener?");
 
         nodeSelected.setParent(nodeParent);
-        listener.onSelectingNode(nodeSelected);
+        listener.onSelectingNode(nodeSelected, nodeParent);
     }
 
     @Override
@@ -103,4 +104,16 @@ public class Node implements Serializable, IViewNode {
         return result;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Node)) return false;
+        Node node = (Node) o;
+        return Objects.equals(getTitle(), node.getTitle());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getTitle());
+    }
 }

@@ -40,6 +40,6 @@ public interface IViewNode {
     List<IViewNode> getAncestors();
 
     interface Callbacks {
-        void onSelectingNode(IViewNode node);
+        void onSelectingNode(IViewNode node, IViewNode nodeParent);
     }
 }

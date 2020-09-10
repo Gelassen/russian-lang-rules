@@ -4,6 +4,6 @@
     <color name="colorPrimaryDark">#142044</color>
     <color name="colorAccent">#4169e1</color>
 
-    <color name="colorNegativeDecision">#4169e1</color>
-    <color name="colorPositiveDecision">#ffffff</color>
+    <color name="colorNegativeDecision">#FFffffff</color>
+    <color name="colorPositiveDecision">#757575</color>
 </resources>
