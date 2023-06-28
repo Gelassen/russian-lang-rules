@@ -7,11 +7,11 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "ru.home.russianlang"
+        applicationId "io.github.gelassen.russianlang"
         minSdkVersion 21
         targetSdkVersion 33
-        versionCode 6
-        versionName "1.6"
+        versionCode 7
+        versionName "1.6.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
